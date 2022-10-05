@@ -48,8 +48,8 @@ def main():
             server = input("Enter server: ")
             port = int(input("Enter port: "))
             topic = input("Enter topic: ")
-            msg = input("Enter message")
-            iter = int(input("Nombre itération ?"))
+            msg = input("Enter message: ")
+            iter = int(input("Nombre itération: "))
             mqtt_publish(user, passwd, server, port, topic, msg, iter)
         
         else:
