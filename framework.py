@@ -1,6 +1,7 @@
 from checksumCalculator import calculateCheckSum, lookForString
 from remove_junk import removeJunk
 from translateHex import translateHex
+from mqtt_subscribe import mqtt_subscribe
 
 
 def main():
@@ -9,7 +10,9 @@ def main():
         print("2. Remove junk")
         print("3. Translate hex file")
         print("4. Look for string")
-        print("5. Exit")
+        print("5. Mqtt subscribe and listen")
+        print("6. Mqtt publish")
+        print("7. Exit")
         choice = input("Enter choice: ")
 
 
@@ -29,6 +32,24 @@ def main():
             filename = input("Enter filename: ")
             string = input("Enter string: ")
             lookForString(filename, string)
+
+        elif choice == "5":
+            user = input("Enter user: ")
+            passwd = input("Enter password: ")
+            server = input("Enter server: ")
+            port = int(input("Enter port: "))
+            topic = input("Enter topic: ")
+            mqtt_subscribe(user, passwd, server, port, topic)
+        
+        elif choice == "6":
+            user = input("Enter user: ")
+            passwd = input("Enter password: ")
+            server = input("Enter server: ")
+            port = int(input("Enter port: "))
+            topic = input("Enter topic: ")
+            msg = input("Enter message")
+            iter = int(input("Nombre itération ?"))
+            mqtt_subscribe(user, passwd, server, port, topic, msg, iter)
         
         else:
             exit()
