@@ -2,6 +2,7 @@ from checksumCalculator import calculateCheckSum, lookForString
 from remove_junk import removeJunk
 from translateHex import translateHex
 from mqtt_subscribe import mqtt_subscribe
+from mqtt_publish import mqtt_publish
 
 
 def main():
@@ -49,7 +50,7 @@ def main():
             topic = input("Enter topic: ")
             msg = input("Enter message")
             iter = int(input("Nombre itération ?"))
-            mqtt_subscribe(user, passwd, server, port, topic, msg, iter)
+            mqtt_publish(user, passwd, server, port, topic, msg, iter)
         
         else:
             exit()
