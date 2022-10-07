@@ -2,6 +2,7 @@ def translateHex(filename):
     # open file
     file = open(filename, "r")
 
+    newFile = open("newFile.txt", "w")
     # read file
     lines = file.readlines()
 
@@ -17,7 +18,8 @@ def translateHex(filename):
             dec = int(hex, 16)
             # convert to char
             char = chr(dec)
-            # print char
-            print(char, end='')
+            # print char to new file
+            newFile.write(char)
+
     
     

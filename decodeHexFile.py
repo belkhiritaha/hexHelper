@@ -36,6 +36,6 @@ def extractIntelligibleStrings(intelligible, n):
     return strings
 
 
-intelligible = decodeHexFile("firmware_tp3_v3.17.hex")
+intelligible = decodeHexFile("firmware_untouched.hex")
 print(intelligible)
-# print(' '.join(extractIntelligibleStrings(intelligible, 4)))
+print(' '.join(extractIntelligibleStrings(intelligible, 10)))

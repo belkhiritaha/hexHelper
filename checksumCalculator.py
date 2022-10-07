@@ -61,9 +61,25 @@ def lookForString(filename, string):
     hexString = hexString.upper()
 
     print(string + " in hex: " + hexString)
-    # search for string
+
+    myDict = {}
     for line in lines:
-        # print(line)
-        if hexString in line:
-            print(line)
-            print("String found at line: " + str(lines.index(line) + 1))
+        data = line[9:-3]
+        if line[7:9] == "00":
+            myDict[line] = data
+        else:
+            myDict[line] = ""
+
+    # join all data
+    data = ""
+    for key in myDict:
+        data += myDict[key]
+
+    # look for string
+    if hexString in data:
+        print("String found!")
+        for key in myDict:
+            if hexString in myDict[key]:
+                print(key)
+    else:
+        print("String not found!")

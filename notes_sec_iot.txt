@@ -1,0 +1,60 @@
+Partie 2/10:
+Enoncé: "Ce micrologiciel se connecte au réseau ayant comme ssid :EDUROAM et utilise le mot de passe : STRONGPASSWORD"
+(ssid = nom du wifi)
+Il faut donc convertir EDUROAM en hexa, et chercher son emplacement dans le code (CTRL + F), puis le remplacer par le SSID de notre wifi (ZZ_HSH codé en hexa of course) [idem pour le mot de passe]
+Result: :10242400732F4C454432574946495F5A5A5F4635E3
+        :1024340061646D696E00000000000000000000008F
+
+PS: Ne pas oublier de corriger les checksum après chaque modification
+
+
+
+Partie 3/10:
+Enoncé: "Déterminer quelle ligne permet la programmation du module."
+
+Il faut voir c'est quel firmware qu'on upload dans la carte (le firmware est le code qui est exécuté par la carte, et qui permet de faire fonctionner le micrologiciel)
+Donc il faut rechercher (CTRL + F) pour tous les fichiers .hex
+On trouve "Blink.ino.hex", c'est donc le firmware qui permet de faire clignoter la led
+
+Result: "C:\\Users\\beleger1\\AppData\\Local\\Temp\\arduino-sketch-45DC3096D22C6497363A0743E3D73DE5/Blink.ino.hex"
+
+
+
+Partie 4/10:
+Enoncé: "À partir de l'analyse du journal d'exécution, déterminez quel programme réalise la transformation du format bin au format hex."
+
+En recherchant encore pour des fichiers .hex ou .bin, on remarque qu'à un moment, le programme "arc-elf32-objcopy" est utilisé, et qu'il y a un fichier .hex en entrée, et un fichier .bin en sortie
+Result: 	
+C:\\Users\\beleger1\\AppData\\Local\\Arduino15\\packages\\Intel\\tools\\arc-elf32\\1.6.9+1.0.1/bin/arc-elf32-objcopy --input-target=ihex --output-target=binary "C:\\Users\\beleger1\\Desktop\\tp\\tp3\\firmware_tp3_v2.33.hex" "C:\\Users\\beleger1\\Desktop\\tp\\tp3\\firmware_tp3_v2.33.bin"
+
+
+
+Partie 5/10:
+Enoncé: "En utilisant le programme développé en préparation, ou une autre solution, corrigez les sommes de contrôle des lignes que vous avez modifié.
+Générez alors un fichier bin, à partir de votre fichier hex modifié."
+
+On a déjà rectifié le checksum dans la partie 2, il faut donc juste générer le fichier .bin à partir du fichier .hex modifié en utilisant la commande de la partie 4 (en modifiant les chemins d'accès bien sûr)
+
+	
+Result: C:\\Users\\beleger1\\AppData\\Local\\Arduino15\\packages\\Intel\\tools\\arc-elf32\\1.6.9+1.0.1/bin/arc-elf32-objcopy --input-target=ihex --output-target=binary "C:\\Users\\beleger1\\Desktop\\tp\\tp3\\firmware_tp3_v2.33.hex" "C:\\Users\\beleger1\\Desktop\\tp\\tp3\\firmware_tp3_v2.33.bin"
+
+
+
+Partie 6/10:
+Enoncé: "En utilisant le journal de téléversement récupéré lors d'une question précédente, dans une fenêtre de commande, faites un copié-collé de la ligne correspondant à la programmation du module, modifier la ligne pour utiliser votre nouveau Firmware."
+
+Il faut voir le contenu du journal comme une suite de commandes qui permettent de compiler, et upload le code dans la carte arduino
+Exemple: "C:\Users\X\X\X\X\X\commande" -argument1 arg1 -argument2 arg2 fichier1 fichier2 ....
+On cherche donc la ligne qui contient la commande "arduino101load" (CTRL + F) car c'est la commande qui permet de programmer la carte arduino
+Result: 	
+"C:\Users\beleger1\AppData\Local\Arduino15\packages\Intel\tools\arduino101load\2.0.1/arduino101load" "-dfu=C:\Users\beleger1\AppData\Local\Arduino15\packages\arduino\tools\dfu-util\0.9.0-arduino1" "-bin=C:\Users\beleger1\AppData\Local\Temp\arduino-sketch-45DC3096D22C6497363A0743E3D73DE5/firmware_tp3_v2.33.bin" -port=COM8 "-v" -ble_fw_str="ATP1BLE00R-1631C4439" -ble_fw_pos=169984 -rtos_fw_str="" -rtos_fw_pos=0 -core=2.0.0
+
+
+
+Partie 7/10:
+Enoncé: "Le port de connexion de l'application est 1883, modifiez le fichier HEX pour que le système se connecte à un numéro de port spécifique à votre binôme (52XX)."
+
+On cherche le port 1883 (en hexa) dans le .hex (CTRL + F) et on le remplace par le port 52XX (en hexa aussi), on recompile le .hex en .bin, et on upload le .bin dans la carte arduino
+
+
+Suite... ? to be continued
