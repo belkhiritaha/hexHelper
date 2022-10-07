@@ -1,0 +1,1 @@
+"P:\\TP\\ZZ2\\Sécurité Systèmes Embarqués\\arduino-1.8.16\\portable\\packages\\Intel\\tools\\arc-elf32\\1.6.9+1.0.1/bin/arc-elf32-objcopy" -I ihex firmware_tp3_v2.33.hex -O binary firmware_tp3_v2.33.bin

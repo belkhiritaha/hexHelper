@@ -1,0 +1,31 @@
+Compiler hex to bin :
+"P:\\TP\\ZZ2\\Securite Systemes Embarques\\arduino-1.8.16\\portable\\packages\\Intel\\tools\\arc-elf32\\1.6.9+1.0.1/bin/arc-elf32-objcopy" -I ihex def62.hex -O binary def62.bin
+
+Envoyer hex a carte :
+"P:\TP\ZZ2\Securite Systemes Embarques\arduino-1.8.16\portable\packages\Intel\tools\arduino101load\2.0.1/arduino101load" -dfu="P:\TP\ZZ2\Securite Systemes Embarques\arduino-1.8.16\portable\packages\arduino\tools\dfu-util\0.9.0-arduino1" -bin="P:\TP\ZZ2\Sécurité Systèmes Embarqués\Python\mqtt_connection\def62.bin" -port=COM3 -v -ble_fw_str="ATP1BLE00R-1631C4439" -ble_fw_pos=169984 -rtos_fw_str="" -rtos_fw_pos=0 -core=2.0.0
+
+Utilisation tcpdump:
+ifconfig pour trouver l'interface à utiliser
+tcpdump port 1883 -A -i enp0s3 | grep xxxx
+-A : print en ASCII 
+-c : nombre de packets a tracer
+-i : interface
+
+tcpdump port 5213 -A -i enp0s3 | grep MQTT
+
+
+ACLFILE :
+topic read #
+
+user flavine
+topic readwrite #
+
+
+mosquitto.conf:
+port 5213
+password_file id_file
+
+acl_file acl_file.txt
+
+
+mosquitto_passwd
