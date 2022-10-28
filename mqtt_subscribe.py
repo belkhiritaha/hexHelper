@@ -20,7 +20,7 @@ def mqtt_subscribe(user, passwd, server, port, topic):
     client.on_connect = on_connect
 
     try:
-        client.username_pw_set(username=user, password=passwd)
+        #client.username_pw_set(username=user, password=passwd)
         client.connect(server, port)
     except:
         print("Connection Failed")

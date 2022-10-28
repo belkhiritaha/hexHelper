@@ -12,7 +12,7 @@ def mqtt_publish(user, passwd, server, port, topic, msg, iter):
 
 
     try:
-        client.username_pw_set(username=user, password=passwd)
+        # client.username_pw_set(username=user, password=passwd)
         client.connect(server, port)
     except:
         print("Connection Failed")
